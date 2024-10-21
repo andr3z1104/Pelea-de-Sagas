@@ -1,6 +1,8 @@
 
 package EDD;
 
+import Clases.Personaje;
+
 
 
 /**
@@ -9,7 +11,7 @@ package EDD;
  */
 public class Lista implements iLista{
     
-    private Nodo head;
+    private NodoPersonaje head;
     private int length;
     
     /**
@@ -26,7 +28,7 @@ public class Lista implements iLista{
      * 
      * @return la cabeza de la lista enlazada
      */
-    public Nodo getHead() {
+    public NodoPersonaje getHead() {
         return head;
     }
 
@@ -35,7 +37,7 @@ public class Lista implements iLista{
      * 
      * @param head la cabeza de la lista enlazada
      */
-    public void setHead(Nodo head) {
+    public void setHead(NodoPersonaje head) {
         this.head = head;
     }
 
@@ -73,8 +75,8 @@ public class Lista implements iLista{
      * @param element el elemento a insertar
      */
     @Override
-    public void insertBegin(Object element){
-        Nodo nodo = new Nodo(element);
+    public void insertBegin(Personaje element){
+        NodoPersonaje nodo = new NodoPersonaje(element);
         
         if(isEmpty()){
             setHead(nodo);
@@ -92,14 +94,14 @@ public class Lista implements iLista{
      * @param element el elemento a insertar
      */
     @Override
-    public void insertFinale(Object element){
-        Nodo nodo = new Nodo(element);
+    public void insertFinale(Personaje element){
+        NodoPersonaje nodo = new NodoPersonaje(element);
         
         if(isEmpty()){
             setHead(nodo);
         }
         else{
-            Nodo pointer = getHead();
+            NodoPersonaje pointer = getHead();
             while(pointer.getNext() != null){
                 pointer = pointer.getNext();
             }
@@ -115,15 +117,15 @@ public class Lista implements iLista{
      * @param index el indice al cual se insertar el elemento
      */
     @Override
-    public void insertAtIndex(Object element, int index){
-        Nodo nodo = new Nodo(element);
+    public void insertAtIndex(Personaje element, int index){
+        NodoPersonaje nodo = new NodoPersonaje(element);
         
         if(isEmpty() || index == 0){
             insertBegin(element);
         }
         else{
             if (index < getLength()) {
-                Nodo pointer = getHead();
+                NodoPersonaje pointer = getHead();
                 
                 int count = 0;
                 
@@ -132,7 +134,7 @@ public class Lista implements iLista{
                     count++;
                 }
                 
-                Nodo temp = pointer.getNext();
+                NodoPersonaje temp = pointer.getNext();
                 
                 nodo.setNext(temp);
                 pointer.setNext(nodo);
@@ -154,14 +156,14 @@ public class Lista implements iLista{
      * @return pointer
      */
     @Override
-    public Nodo deleteBegin(){
+    public NodoPersonaje deleteBegin(){
     
         if(isEmpty()){
             System.out.println("La Lista esta vacia");
             return null;
         }
         else{
-            Nodo pointer = getHead();
+            NodoPersonaje pointer = getHead();
             setHead(pointer.getNext());
             pointer.setNext(null);
             length--;
@@ -176,18 +178,18 @@ public class Lista implements iLista{
      * @return temp
      */
     @Override
-    public Nodo deleteFinale(){
+    public NodoPersonaje deleteFinale(){
         
         if(isEmpty()){
             System.out.println("La Lista esta vacia");
             return null;
         }
         else{
-            Nodo pointer = getHead();
+            NodoPersonaje pointer = getHead();
             while(pointer.getNext().getNext() != null){
                 pointer = pointer.getNext();
             }
-            Nodo temp = pointer.getNext();
+            NodoPersonaje temp = pointer.getNext();
             pointer.setNext(null);
             length--;
             return temp;
@@ -201,14 +203,14 @@ public class Lista implements iLista{
      * @return temp
      */
     @Override
-    public Nodo deleteAtIndex(int index){
+    public NodoPersonaje deleteAtIndex(int index){
         
         if(isEmpty() || index == 0){
             return deleteBegin();
         }
         else{
             if (index < getLength()) {
-                Nodo pointer = getHead();
+                NodoPersonaje pointer = getHead();
                 
                 int count = 0;
                 
@@ -217,7 +219,7 @@ public class Lista implements iLista{
                     count++;
                 }
                 
-                Nodo temp = pointer.getNext();
+                NodoPersonaje temp = pointer.getNext();
                 
                 pointer.setNext(temp.getNext());
                 temp.setNext(null);
@@ -240,7 +242,7 @@ public class Lista implements iLista{
      * 
      */
     public void print(){
-        Nodo pointer = getHead();
+        NodoPersonaje pointer = getHead();
         while(pointer != null){
             System.out.print(" [ " +  pointer.getElement() + " ] ");
             pointer = pointer.getNext();
@@ -253,8 +255,8 @@ public class Lista implements iLista{
      * @param index el indice del elemento 
      * @return pAux
      */
-    public Nodo searchByIndex(int index){
-        Nodo pAux=this.head;
+    public NodoPersonaje searchByIndex(int index){
+        NodoPersonaje pAux=this.head;
         int count = 0;
         
         while (pAux!=null && count!=index){
@@ -277,7 +279,7 @@ public class Lista implements iLista{
      * @return
      */
     public Object returnIndexData(int index){
-        Nodo returnedNodo=this.searchByIndex(index);
+        NodoPersonaje returnedNodo=this.searchByIndex(index);
         if (returnedNodo!=null){
             return returnedNodo.getElement();
         }else{

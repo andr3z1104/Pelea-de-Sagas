@@ -1,9 +1,9 @@
 package EDD;
-
+import Clases.*;
 
 public interface IQueue {
-    public void enqueue(Nodo element);
-    public Nodo dequeue();
+    public void enqueue(Personaje element);
+    public NodoPersonaje dequeue();
     public Object process();
-    public Nodo dispatch();
+    public NodoPersonaje dispatch();
 }

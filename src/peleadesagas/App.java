@@ -27,11 +27,6 @@ public class App {
         Controlador.cargarSimulacion();
     }
     
-    
-    
-    
-    
-    
     public static App getApp() {
         return app;
     }
@@ -40,19 +35,19 @@ public class App {
         App.app = app;
     }
 
-    public static Admin getAdmin() {
+    public  Admin getAdmin() {
         return admin;
     }
 
-    public static void setAdmin(Admin admin) {
+    public  void setAdmin(Admin admin) {
         App.admin = admin;
     }
 
-    public static AI getIa() {
+    public  AI getIA() {
         return ia;
     }
 
-    public static void setIa(AI ia) {
+    public  void setIA(AI ia) {
         App.ia = ia;
     }
     

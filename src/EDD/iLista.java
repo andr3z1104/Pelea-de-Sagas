@@ -1,6 +1,8 @@
 
 package EDD;
 
+import Clases.Personaje;
+
 /**
  *
  * @author andre
@@ -12,14 +14,14 @@ public interface iLista {
      * 
      * @param element el elemento a insertar
      */
-    public void insertBegin(Object element);
+    public void insertBegin(Personaje element);
 
     /**
      *Inserta un elemento al principio de la lista
      * 
      * @param element el elemento a insertar
      */
-    public void insertFinale(Object element);
+    public void insertFinale(Personaje element);
 
     /**
      *Inserta un elemento a un indice especificado
@@ -27,21 +29,21 @@ public interface iLista {
      * @param element el elemento a insertar
      * @param index el indice al cual se insertar el elemento
      */
-    public void insertAtIndex(Object element, int index);
+    public void insertAtIndex(Personaje element, int index);
     
     /**
      *Borra el primer elemento de la lista
      * 
      * @return el elemento borrado
      */
-    public Object deleteBegin();
+    public NodoPersonaje deleteBegin();
 
     /**
      *Borra el ultimo elemento de la lista
      * 
      * @return el elemento borrado
      */
-    public Object deleteFinale();
+    public NodoPersonaje deleteFinale();
 
     /**
      *Borra un elemento en un indice especificado
@@ -49,7 +51,7 @@ public interface iLista {
      * @param index el indice del elemento a borrar
      * @return el elemento borrado
      */
-    public Object deleteAtIndex(int index);
+    public NodoPersonaje deleteAtIndex(int index);
     
     /**
      *Checkea si una lista esta vacia

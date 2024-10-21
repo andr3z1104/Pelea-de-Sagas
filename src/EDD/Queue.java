@@ -1,8 +1,10 @@
 package EDD;
 
+import Clases.Personaje;
+
 public class Queue implements IQueue {
     
-    Nodo head, tail;
+    NodoPersonaje head, tail;
     int length;
 
     public Queue() {
@@ -11,19 +13,19 @@ public class Queue implements IQueue {
         this.length = 0;
     }
 
-    public Nodo getHead() {
+    public NodoPersonaje getHead() {
         return head;
     }
 
-    public void setHead(Nodo head) {
+    public void setHead(NodoPersonaje head) {
         this.head = head;
     }
 
-    public Nodo getTail() {
+    public NodoPersonaje getTail() {
         return tail;
     }
 
-    public void setTail(Nodo tail) {
+    public void setTail(NodoPersonaje tail) {
         this.tail = tail;
     }
 
@@ -36,8 +38,8 @@ public class Queue implements IQueue {
     }
 
     @Override
-    public void enqueue(Nodo element) {
-        Nodo nodo = new Nodo(element);
+    public void enqueue(Personaje element) {
+        NodoPersonaje nodo = new NodoPersonaje(element);
         if (isEmpty()) {
             setHead(nodo);
             setTail(nodo);
@@ -50,11 +52,11 @@ public class Queue implements IQueue {
     }
 
     @Override
-    public Nodo dequeue() {
+    public NodoPersonaje dequeue() {
         if (isEmpty()){
             System.out.println("La cola esta vacía");
         } else{
-            Nodo pointer = getHead();
+            NodoPersonaje pointer = getHead();
             setHead(pointer.getNext());
             pointer.setNext(null);
             length--;
@@ -76,7 +78,7 @@ public class Queue implements IQueue {
     }
 
     @Override
-    public Nodo dispatch() {
+    public NodoPersonaje dispatch() {
         if (isEmpty()){
             System.out.println("la lista esta vacia");
         }else{
@@ -91,11 +93,12 @@ public class Queue implements IQueue {
     }
     
     public void print(){
-        Nodo pointer = getHead();
+        NodoPersonaje pointer = getHead();
         while (pointer != null) {
             System.out.println("[ " + pointer.getElement() + " ]");
             pointer = pointer.getNext();
         } 
     }
-    
+
+
 }

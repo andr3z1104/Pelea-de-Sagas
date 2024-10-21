@@ -1,21 +1,23 @@
 
 package EDD;
 
+import Clases.Personaje;
+
 /**
  *
  * @author andre
  */
-public class Nodo {
+public class NodoPersonaje {
     
-    private Object element;
-    private Nodo next;
+    private Personaje element;
+    private NodoPersonaje next;
     
     /**
      *Constructor del nodo
      * 
      * @param element el elemento para ser guardado en el nodo
      */
-    public Nodo(Object element){
+    public NodoPersonaje(Personaje element){
         this.element = element;
         this.next = null;
     }
@@ -25,7 +27,7 @@ public class Nodo {
      * 
      * @return el elemento guardado en el nodo
      */
-    public Object getElement() {
+    public Personaje getElement() {
         return element;
     }
 
@@ -34,7 +36,7 @@ public class Nodo {
      * 
      * @param element el elemento a ser guardado en el nodo
      */
-    public void setElement(Object element) {
+    public void setElement(Personaje element) {
         this.element = element;
     }
 
@@ -43,7 +45,7 @@ public class Nodo {
      * 
      * @return el siguiente nodo
      */
-    public Nodo getNext() {
+    public NodoPersonaje getNext() {
         return next;
     }
 
@@ -52,7 +54,7 @@ public class Nodo {
      * 
      * @param next el siguiente nodo
      */
-    public void setNext(Nodo next) {
+    public void setNext(NodoPersonaje next) {
         this.next = next;
     }
     
