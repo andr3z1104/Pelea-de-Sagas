@@ -1,0 +1,9 @@
+[StarWars]
+Han Solo,150,90,60,Ataque Critico,/FotosStarWars/HanSolo-oro.png;
+Darth Vader,200,100,30,Tank,/FotosStarWars/DarthVader-plata.png;
+Obi Wan,120,80,70,Ataque Critico,/FotosStarWars/ObiWan-bronce.png;
+
+[StarTrek]
+Spock,115,80,45,Curacion,/FotosStarTrek/Spock-oro.png;
+James Kirk,100,75,80,Intimidar,/FotosStarWars/JamesKirk-plata.png;
+Trelane,75,65,99,Intimidar,/FotosStarWars/Trelane-bronce.png;

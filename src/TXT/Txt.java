@@ -1,6 +1,7 @@
 package TXT;
 
 import Clases.Personaje;
+import EDD.Lista;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -9,6 +10,14 @@ import java.io.FileReader;
  * @author andre
  */
 public class Txt {
+    
+    private final Lista oroStarWars= new Lista();
+    private final Lista plataStarWars = new Lista();
+    private final Lista bronceStarWars = new Lista();
+
+    private final Lista oroStarTrek = new Lista();
+    private final Lista plataStarTrek = new Lista();
+    private final Lista bronceStarTrek= new Lista();
     
     public void leerTxt(String file){
         String line;
@@ -31,28 +40,29 @@ public class Txt {
                                 Integer.parseInt(parts[1]),
                                 Integer.parseInt(parts[2]),
                                 Integer.parseInt(parts[3]),
+                                parts[4],
                                 parts[5].split(";")[0]
                         );
  
                         // Clasificar el personaje en la linkedList correspondiente
-                        if (line.contains("yellow.png") && "Regular Show".equals(currentShow)) {
+                        if (line.contains("oro.png") && "StarWars".equals(currentShow)) {
                             personaje.setPrioridad(1);
-                           // this.getYellowRegularShow().addEnd(character);
-                        } else if (line.contains("green.png") && "Regular Show".equals(currentShow)) {
+                            this.oroStarWars.insertFinale(personaje);
+                        } else if (line.contains("plata.png") && "StarWars".equals(currentShow)) {
                             personaje.setPrioridad(2);
-                            //this.getGreenRegularShow().addEnd(character);
-                        } else if (line.contains("red.png") && "Regular Show".equals(currentShow)) {
+                            this.plataStarWars.insertFinale(personaje);
+                        } else if (line.contains("bronce.png") && "StarWars".equals(currentShow)) {
                             personaje.setPrioridad(3);
-                            //this.getRedRegularShow().addEnd(character);
-                        } else if (line.contains("yellow.png") && "Avatar".equals(currentShow)) {
+                            this.bronceStarWars.insertFinale(personaje);
+                        } else if (line.contains("oro.png") && "StarTrek".equals(currentShow)) {
                             personaje.setPrioridad(1);
-                            //this.getYellowAvatar().addEnd(character);
-                        } else if (line.contains("green.png") && "Avatar".equals(currentShow)) {
+                           this.oroStarTrek.insertFinale(personaje);
+                        } else if (line.contains("plata.png") && "StarTrek".equals(currentShow)) {
                             personaje.setPrioridad(2);
-                            //this.getGreenAvatar().addEnd(character);
-                        } else if (line.contains("red.png") && "Avatar".equals(currentShow)) {
+                            this.plataStarTrek.insertFinale(personaje);
+                        } else if (line.contains("bronce.png") && "StarTrek".equals(currentShow)) {
                             personaje.setPrioridad(3);
-                            //this.getRedAvatar().addEnd(character);
+                            this.bronceStarTrek.insertFinale(personaje);
                         }
                     }
                 }

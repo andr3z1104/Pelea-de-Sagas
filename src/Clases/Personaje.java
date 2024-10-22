@@ -8,21 +8,23 @@ package Clases;
 public class Personaje {
     
     private int ID; //ID unico del personaje
-    private String nombrePersonaje;
+    private final String nombrePersonaje;
     private int Prioridad; 
     private int contador = 0;
     private int HP; //VIDA DEL PERSONAJE (Health Points)
     private int FP; // FUERZA DE ATAQUE DEL PERSONAJE (Fight Points)
     private int AP; // VELOCIDAD DEL PERSONAJE (Agility Points)
     private String Habilidad; // Habilidad del Personaje
+    private final String foto;
 
-    public Personaje(int ID, String nombrePersonaje, int HP, int FP, int AP, String Habilidad) {
+    public Personaje(int ID, String nombrePersonaje, int HP, int FP, int AP, String Habilidad, String foto) {
         this.ID = ID;
         this.nombrePersonaje = nombrePersonaje;
         this.HP = HP;
         this.FP = FP;
         this.AP = AP;
         this.Habilidad = Habilidad;
+        this.foto = foto;
     }
     
     //Aumenta en 1 el contador cada vez que se complete un round, Cuando llegue a 8, aumenta la prioridad del personaje.
