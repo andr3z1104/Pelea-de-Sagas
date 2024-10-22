@@ -2,6 +2,7 @@ package TXT;
 
 import Clases.Personaje;
 import EDD.Lista;
+import EDD.NodoPersonaje;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -67,10 +68,52 @@ public class Txt {
                     }
                 }
             }
+            
+        NodoPersonaje pointer = this.oroStarWars.getHead();
+        while(pointer != null){
+            System.out.print(" [ " +  pointer.getElement().getHabilidad() + " ] ");
+            pointer = pointer.getNext();
+        }
+            
+            
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public Lista getOroStarWars() {
+        return oroStarWars;
+    }
+
+    public Lista getPlataStarWars() {
+        return plataStarWars;
+    }
+
+    public Lista getBronceStarWars() {
+        return bronceStarWars;
+    }
+
+    public Lista getOroStarTrek() {
+        return oroStarTrek;
+    }
+
+    public Lista getPlataStarTrek() {
+        return plataStarTrek;
+    }
+
+    public Lista getBronceStarTrek() {
+        return bronceStarTrek;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
     
 

@@ -1,6 +1,7 @@
 
 package Clases;
 
+import TXT.Txt;
 import peleadesagas.*;
 
 
@@ -15,11 +16,17 @@ public class Controlador {
         
         App app = App.getInstance();
         
+        app.setT(new Txt());
+        app.getT().leerTxt(app.getPath());
+        
         app.setIA(new AI());
         
-        Admin admin = new Admin();
+        Admin admin = new Admin( app.getIA(), app.getT().getOroStarWars(), app.getT().getPlataStarWars(), app.getT().getBronceStarWars(),
+        app.getT().getOroStarTrek(), app.getT().getPlataStarTrek(), app.getT().getBronceStarTrek());
         
         app.setAdmin(admin);
+        
+        app.getAdmin().arrancarSimulacion();
         
     }
     

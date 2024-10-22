@@ -21,6 +21,12 @@ public class NodoPersonaje {
         this.element = element;
         this.next = null;
     }
+    
+        public NodoPersonaje(){
+        this.element = null;
+        this.next = null;
+    }
+    
 
     /**
      *Obtiene el elemento guardado en el nodo
