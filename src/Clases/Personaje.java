@@ -43,7 +43,7 @@ public class Personaje {
     
     
     //Si el personaje posee la hablidad CURACION, usa esta funcion
-    public void Curacion(int sanacion){
+    public void curacion(int sanacion){
         int maxHP = 200;
         this.HP += sanacion;
         

@@ -25,7 +25,7 @@ public class TV_Show {
     }
     
     
-    
+    //ENCOLAR
     public void crearQueue(NodoPersonaje nodo){
         
         switch (nodo.getElement().getPrioridad()) {
@@ -34,6 +34,10 @@ public class TV_Show {
             case 3 -> this.prioridad_3.enqueue(nodo.getElement());
         }
         
+    }
+    
+    public void enqueueRefuerzos(Personaje pj){
+        this.refuerzo.enqueue(pj);
     }
     
     

@@ -17,6 +17,30 @@ public class Admin extends Thread {
     private TV_Show colasStarWars; // TV_Show contiene 4 colas
     private TV_Show colasStarTrek; // TV_Show contiene 4 colas
 
+    public AI getAi() {
+        return ai;
+    }
+
+    public void setAi(AI ai) {
+        this.ai = ai;
+    }
+
+    public TV_Show getColasStarWars() {
+        return colasStarWars;
+    }
+
+    public void setColasStarWars(TV_Show colasStarWars) {
+        this.colasStarWars = colasStarWars;
+    }
+
+    public TV_Show getColasStarTrek() {
+        return colasStarTrek;
+    }
+
+    public void setColasStarTrek(TV_Show colasStarTrek) {
+        this.colasStarTrek = colasStarTrek;
+    }
+
     public Admin(AI ai, Lista OroStarWars, Lista PlataStarWars, Lista BronceStarWars, 
                              Lista OroStarTrek, Lista PlataStarTrek, Lista BronceStarTrek) {
         
