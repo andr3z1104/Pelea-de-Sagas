@@ -131,6 +131,14 @@ public class Personaje {
     public void setHabilidad(String Habilidad) {
         this.Habilidad = Habilidad;
     }
+
+    public String getNombrePersonaje() {
+        return nombrePersonaje;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
     
     
     

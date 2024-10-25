@@ -21,11 +21,10 @@ public class Controlador {
         
         app.setIA(new AI());
         
-        Admin admin = new Admin( app.getIA(), app.getT().getOroStarWars(), app.getT().getPlataStarWars(), app.getT().getBronceStarWars(),
+        Admin admin = new Admin( app.getIA(), app.getSemaforo(), app.getT().getOroStarWars(), app.getT().getPlataStarWars(), app.getT().getBronceStarWars(),
         app.getT().getOroStarTrek(), app.getT().getPlataStarTrek(), app.getT().getBronceStarTrek());
         
         app.setAdmin(admin);
-        
         app.getAdmin().arrancarSimulacion();
         
     }

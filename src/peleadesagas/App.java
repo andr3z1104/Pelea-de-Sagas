@@ -3,6 +3,7 @@ package peleadesagas;
 
 import Clases.*;
 import TXT.Txt;
+import java.util.concurrent.Semaphore;
 
 
 /**
@@ -15,6 +16,8 @@ public class App {
     
     private static Admin admin;
     private static AI ia;
+    
+    private static Semaphore semaforo = new Semaphore(1);
     
     private static String path = "test//PruebaCombate.txt";
     private static Txt t;
@@ -70,6 +73,15 @@ public class App {
     public  void setT(Txt t) {
         App.t = t;
     }
+
+    public static Semaphore getSemaforo() {
+        return semaforo;
+    }
+
+    public static void setSemaforo(Semaphore semaforo) {
+        App.semaforo = semaforo;
+    }
+    
     
     
     
