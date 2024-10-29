@@ -7,6 +7,9 @@ package UI;
 import EDD.NodoPersonaje;
 import EDD.Queue;
 import java.awt.FlowLayout;
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,12 +22,80 @@ import javax.swing.ScrollPaneConstants;
  * @author andre
  */
 public class GolpeMain extends javax.swing.JFrame {
+    
+    private JPanel panel1;
+    private JPanel panel2;
+    private JPanel panel3;
+    private JPanel panel4;
+    
+    private JPanel panel5;
+    private JPanel panel6;
+    private JPanel panel7;
+    private JPanel panel8;
 
     /**
      * Creates new form GolpeMain
      */
     public GolpeMain() {
         initComponents();
+        
+        panel2 = new JPanel();
+        panel2.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
+        this.SW_Prioridad_2.setViewportView(panel2);
+        this.SW_Prioridad_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.SW_Prioridad_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+     
+        panel1 = new JPanel();
+        panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
+        
+        this.SW_Prioridad_1.setViewportView(panel1);
+        this.SW_Prioridad_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.SW_Prioridad_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        panel3 = new JPanel();
+        panel3.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.SW_Prioridad_3.setViewportView(panel3);
+        this.SW_Prioridad_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.SW_Prioridad_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        panel4 = new JPanel();
+        panel4.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.SW_Reserva.setViewportView(panel4);
+        this.SW_Reserva.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.SW_Reserva.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        
+        panel5 = new JPanel();
+        panel5.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.ST_Prioridad_1.setViewportView(panel5);
+        this.ST_Prioridad_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.ST_Prioridad_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        panel6 = new JPanel();
+        panel6.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.ST_Prioridad_2.setViewportView(panel6);
+        this.ST_Prioridad_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.ST_Prioridad_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        panel7 = new JPanel();
+        panel7.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.ST_Prioridad_3.setViewportView(panel7);
+        this.ST_Prioridad_3.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.ST_Prioridad_3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        panel8 = new JPanel();
+        panel8.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+        this.ST_Reserva.setViewportView(panel8);
+        this.ST_Reserva.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        this.ST_Reserva.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
     }
 
     /**
@@ -77,13 +148,13 @@ public class GolpeMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Round.setBackground(new java.awt.Color(102, 102, 255));
+        Round.setBackground(new java.awt.Color(0, 0, 0));
         Round.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        Round.setForeground(new java.awt.Color(0, 0, 0));
+        Round.setForeground(new java.awt.Color(255, 255, 255));
         Round.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Round.setText("Round: X");
         Round.setOpaque(true);
-        getContentPane().add(Round, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 10, 100, 40));
+        getContentPane().add(Round, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 120, 40));
 
         AI_Estado.setBackground(new java.awt.Color(255, 204, 204));
         AI_Estado.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -104,8 +175,9 @@ public class GolpeMain extends javax.swing.JFrame {
         Tiempo_Slider.setOpaque(true);
         getContentPane().add(Tiempo_Slider, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 640, 310, 60));
 
-        VS_Label.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        VS_Label.setForeground(new java.awt.Color(0, 0, 0));
+        VS_Label.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        VS_Label.setForeground(new java.awt.Color(255, 0, 0));
+        VS_Label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         VS_Label.setText("VS");
         getContentPane().add(VS_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 70, 50));
 
@@ -113,34 +185,48 @@ public class GolpeMain extends javax.swing.JFrame {
         SW_Peleador.setOpaque(true);
         getContentPane().add(SW_Peleador, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 190, 130));
 
-        SW_ID.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        SW_ID.setForeground(new java.awt.Color(0, 0, 0));
+        SW_ID.setBackground(new java.awt.Color(0, 0, 0));
+        SW_ID.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SW_ID.setForeground(new java.awt.Color(255, 255, 255));
+        SW_ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SW_ID.setText("ID: X");
-        getContentPane().add(SW_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 150, 40));
+        SW_ID.setOpaque(true);
+        getContentPane().add(SW_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 190, 30));
 
+        SW_Estado.setBackground(new java.awt.Color(0, 0, 0));
         SW_Estado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        SW_Estado.setForeground(new java.awt.Color(0, 0, 0));
+        SW_Estado.setForeground(new java.awt.Color(255, 255, 255));
         SW_Estado.setText("Estado: X");
+        SW_Estado.setOpaque(true);
         getContentPane().add(SW_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 150, 40));
 
+        SW_HP.setBackground(new java.awt.Color(0, 0, 0));
         SW_HP.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        SW_HP.setForeground(new java.awt.Color(0, 0, 0));
+        SW_HP.setForeground(new java.awt.Color(255, 255, 255));
         SW_HP.setText("HP: X");
+        SW_HP.setOpaque(true);
         getContentPane().add(SW_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 150, 40));
 
-        ST_ID.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ST_ID.setForeground(new java.awt.Color(0, 0, 0));
+        ST_ID.setBackground(new java.awt.Color(0, 0, 0));
+        ST_ID.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ST_ID.setForeground(new java.awt.Color(255, 255, 255));
+        ST_ID.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ST_ID.setText("ID: X");
-        getContentPane().add(ST_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 160, 150, 40));
+        ST_ID.setOpaque(true);
+        getContentPane().add(ST_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 160, 190, 30));
 
+        ST_Estado.setBackground(new java.awt.Color(0, 0, 0));
         ST_Estado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ST_Estado.setForeground(new java.awt.Color(0, 0, 0));
+        ST_Estado.setForeground(new java.awt.Color(255, 255, 255));
         ST_Estado.setText("Estado: X");
+        ST_Estado.setOpaque(true);
         getContentPane().add(ST_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, 40));
 
+        ST_HP.setBackground(new java.awt.Color(0, 0, 0));
         ST_HP.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ST_HP.setForeground(new java.awt.Color(0, 0, 0));
+        ST_HP.setForeground(new java.awt.Color(255, 255, 255));
         ST_HP.setText("HP: X");
+        ST_HP.setOpaque(true);
         getContentPane().add(ST_HP, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, 150, 40));
 
         ST_Peleador.setText("jLabel1");
@@ -148,69 +234,107 @@ public class GolpeMain extends javax.swing.JFrame {
         getContentPane().add(ST_Peleador, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 190, 130));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 1180, 20));
 
+        ST_ColaDePrioridad_4.setBackground(new java.awt.Color(0, 0, 0));
         ST_ColaDePrioridad_4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ST_ColaDePrioridad_4.setForeground(new java.awt.Color(0, 0, 0));
-        ST_ColaDePrioridad_4.setText("Cola de Prioridad N°4");
+        ST_ColaDePrioridad_4.setForeground(new java.awt.Color(255, 255, 255));
+        ST_ColaDePrioridad_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ST_ColaDePrioridad_4.setText("Refuerzos");
+        ST_ColaDePrioridad_4.setOpaque(true);
         getContentPane().add(ST_ColaDePrioridad_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 630, 200, 20));
 
+        ST_ColaDePrioridad_3.setBackground(new java.awt.Color(0, 0, 0));
         ST_ColaDePrioridad_3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ST_ColaDePrioridad_3.setForeground(new java.awt.Color(0, 0, 0));
+        ST_ColaDePrioridad_3.setForeground(new java.awt.Color(255, 255, 255));
+        ST_ColaDePrioridad_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ST_ColaDePrioridad_3.setText("Cola de Prioridad N°3");
+        ST_ColaDePrioridad_3.setOpaque(true);
         getContentPane().add(ST_ColaDePrioridad_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, 200, 20));
 
+        ST_ColaDePrioridad_2.setBackground(new java.awt.Color(0, 0, 0));
         ST_ColaDePrioridad_2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ST_ColaDePrioridad_2.setForeground(new java.awt.Color(0, 0, 0));
+        ST_ColaDePrioridad_2.setForeground(new java.awt.Color(255, 255, 255));
+        ST_ColaDePrioridad_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ST_ColaDePrioridad_2.setText("Cola de Prioridad N°2");
+        ST_ColaDePrioridad_2.setOpaque(true);
         getContentPane().add(ST_ColaDePrioridad_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, 200, 20));
 
+        ST_ColaDePrioridad_1.setBackground(new java.awt.Color(0, 0, 0));
         ST_ColaDePrioridad_1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ST_ColaDePrioridad_1.setForeground(new java.awt.Color(0, 0, 0));
+        ST_ColaDePrioridad_1.setForeground(new java.awt.Color(255, 255, 255));
+        ST_ColaDePrioridad_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ST_ColaDePrioridad_1.setText("Cola de Prioridad N°1");
+        ST_ColaDePrioridad_1.setOpaque(true);
         getContentPane().add(ST_ColaDePrioridad_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 270, 200, 20));
 
+        SW_ColaDePrioridad_4.setBackground(new java.awt.Color(0, 0, 0));
         SW_ColaDePrioridad_4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SW_ColaDePrioridad_4.setForeground(new java.awt.Color(0, 0, 0));
-        SW_ColaDePrioridad_4.setText("Cola de Prioridad N°4");
+        SW_ColaDePrioridad_4.setForeground(new java.awt.Color(255, 255, 255));
+        SW_ColaDePrioridad_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        SW_ColaDePrioridad_4.setText("Refuerzos");
+        SW_ColaDePrioridad_4.setOpaque(true);
         getContentPane().add(SW_ColaDePrioridad_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 630, 200, 20));
 
+        SW_ColaDePrioridad_3.setBackground(new java.awt.Color(0, 0, 0));
         SW_ColaDePrioridad_3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SW_ColaDePrioridad_3.setForeground(new java.awt.Color(0, 0, 0));
+        SW_ColaDePrioridad_3.setForeground(new java.awt.Color(255, 255, 255));
+        SW_ColaDePrioridad_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SW_ColaDePrioridad_3.setText("Cola de Prioridad N°3");
+        SW_ColaDePrioridad_3.setOpaque(true);
         getContentPane().add(SW_ColaDePrioridad_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 200, 20));
 
+        SW_ColaDePrioridad_2.setBackground(new java.awt.Color(0, 0, 0));
         SW_ColaDePrioridad_2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SW_ColaDePrioridad_2.setForeground(new java.awt.Color(0, 0, 0));
+        SW_ColaDePrioridad_2.setForeground(new java.awt.Color(255, 255, 255));
+        SW_ColaDePrioridad_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SW_ColaDePrioridad_2.setText("Cola de Prioridad N°2");
+        SW_ColaDePrioridad_2.setOpaque(true);
         getContentPane().add(SW_ColaDePrioridad_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 200, 20));
 
+        SW_ColaDePrioridad_1.setBackground(new java.awt.Color(0, 0, 0));
         SW_ColaDePrioridad_1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        SW_ColaDePrioridad_1.setForeground(new java.awt.Color(0, 0, 0));
+        SW_ColaDePrioridad_1.setForeground(new java.awt.Color(255, 255, 255));
+        SW_ColaDePrioridad_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SW_ColaDePrioridad_1.setText("Cola de Prioridad N°1");
-        getContentPane().add(SW_ColaDePrioridad_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 200, 30));
+        SW_ColaDePrioridad_1.setOpaque(true);
+        getContentPane().add(SW_ColaDePrioridad_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 200, -1));
 
-        SW_Victorias.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        SW_Victorias.setForeground(new java.awt.Color(0, 0, 0));
+        SW_Victorias.setBackground(new java.awt.Color(0, 0, 0));
+        SW_Victorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        SW_Victorias.setForeground(new java.awt.Color(255, 232, 31));
+        SW_Victorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SW_Victorias.setText("Victorias: X");
-        getContentPane().add(SW_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 150, 40));
+        SW_Victorias.setOpaque(true);
+        getContentPane().add(SW_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 150, 40));
 
-        ST_Victorias.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        ST_Victorias.setForeground(new java.awt.Color(0, 0, 0));
+        ST_Victorias.setBackground(new java.awt.Color(0, 0, 0));
+        ST_Victorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        ST_Victorias.setForeground(new java.awt.Color(0, 153, 255));
+        ST_Victorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ST_Victorias.setText("Victorias: X");
-        getContentPane().add(ST_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 230, 150, 40));
+        ST_Victorias.setOpaque(true);
+        getContentPane().add(ST_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 150, 40));
 
-        StarWarslTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        StarWarslTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        StarWarslTitulo.setBackground(new java.awt.Color(0, 0, 0));
+        StarWarslTitulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        StarWarslTitulo.setForeground(new java.awt.Color(255, 232, 31));
+        StarWarslTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         StarWarslTitulo.setText("Star Wars");
-        getContentPane().add(StarWarslTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 220, 50));
+        StarWarslTitulo.setOpaque(true);
+        getContentPane().add(StarWarslTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 240, 60));
 
-        StraTrekTitulo.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        StraTrekTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        StraTrekTitulo.setBackground(new java.awt.Color(0, 0, 0));
+        StraTrekTitulo.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        StraTrekTitulo.setForeground(new java.awt.Color(51, 102, 255));
+        StraTrekTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         StraTrekTitulo.setText("Star Trek");
-        getContentPane().add(StraTrekTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 210, 210, 50));
+        StraTrekTitulo.setOpaque(true);
+        getContentPane().add(StraTrekTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 210, 220, 60));
         getContentPane().add(SW_Reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 650, 360, 100));
         getContentPane().add(SW_Prioridad_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 530, 360, 100));
         getContentPane().add(SW_Prioridad_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 360, 100));
 
+        SW_Prioridad_1.setBackground(new java.awt.Color(0, 0, 0));
+        SW_Prioridad_1.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(SW_Prioridad_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, 100));
         getContentPane().add(ST_Reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 650, 360, 100));
         getContentPane().add(ST_Prioridad_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 360, 100));
@@ -218,16 +342,19 @@ public class GolpeMain extends javax.swing.JFrame {
         getContentPane().add(ST_Prioridad_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 290, 360, 100));
 
         Fondo_StarWars.setBackground(new java.awt.Color(204, 255, 204));
+        Fondo_StarWars.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FotosStarTrek/FondoStarTrek (2).jpg"))); // NOI18N
         Fondo_StarWars.setToolTipText("");
         Fondo_StarWars.setOpaque(true);
         getContentPane().add(Fondo_StarWars, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 590, 560));
 
         Fondo_StarWars1.setBackground(new java.awt.Color(204, 204, 255));
+        Fondo_StarWars1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FotosStarWars/FondoStarWars (1).png"))); // NOI18N
         Fondo_StarWars1.setToolTipText("");
         Fondo_StarWars1.setOpaque(true);
         getContentPane().add(Fondo_StarWars1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 590, 560));
 
         FondoArena.setBackground(new java.awt.Color(153, 153, 153));
+        FondoArena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FotosArena/FondoArena.jpeg"))); // NOI18N
         FondoArena.setToolTipText("");
         FondoArena.setOpaque(true);
         getContentPane().add(FondoArena, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1180, 770));
@@ -238,30 +365,179 @@ public class GolpeMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void iniciarColasUI_StarWars(Queue cola1, Queue cola2, Queue cola3){
+        actualizarColaUI_StarWars_Prioridad_1(cola1);
+        actualizarColaUI_StarWars_Prioridad_2(cola2);
+        actualizarColaUI_StarWars_Prioridad_3(cola3);
+    }
     
-    public void actualizarColaUI(Queue cola){
-        JPanel panel = new JPanel();
-        panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
-     this.SW_Prioridad_2.setViewportView(panel);
+    public void iniciarColasUI_StarTrek(Queue cola1, Queue cola2, Queue cola3){
+        actualizarColaUI_StarTrek_Prioridad_1(cola1);
+        actualizarColaUI_StarTrek_Prioridad_2(cola2);
+        actualizarColaUI_StarTrek_Prioridad_3(cola3);
+    }
+    
+    
+    
+    
+    public void actualizarColasUI_StarWars(Queue cola1, Queue cola2, Queue cola3, Queue cola4){
+        actualizarColaUI_StarWars_Prioridad_1(cola1);
+        actualizarColaUI_StarWars_Prioridad_2(cola2);
+        actualizarColaUI_StarWars_Prioridad_3(cola3);
+        actualizarColaUI_StarWars_Refuerzo(cola4);
+    }
+    
+    public void actualizarColasUI_StarTrek(Queue cola1, Queue cola2, Queue cola3, Queue cola4){
+        actualizarColaUI_StarTrek_Prioridad_1(cola1);
+        actualizarColaUI_StarTrek_Prioridad_2(cola2);
+        actualizarColaUI_StarTrek_Prioridad_3(cola3);
+        actualizarColaUI_StarTrek_Refuerzo(cola4);
+    }
+    
+        public void quitarFotoPeleadores(JLabel labelName, String root){
+        ImageIcon image = new ImageIcon(root);
+       // Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight()));
+        labelName.setIcon(image);
+        this.repaint();
+    }
+    
+    
+ 
+        public void actualizarColaUI_StarWars_Prioridad_1(Queue cola){
+            
+            this.panel1.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta2 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel1.add(etiqueta2);
+                pointer = pointer.getNext();
+            }
 
-      this.SW_Prioridad_2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-     this.SW_Prioridad_2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+          //  this.SW_Prioridad_1.add(panel2);
+
+            this.SW_Prioridad_1.revalidate();
+            this.SW_Prioridad_1.repaint();
+    }
         
-        this.SW_Prioridad_2.removeAll();
+        
+           
+    public void actualizarColaUI_StarWars_Prioridad_2(Queue cola){
+        
+        this.panel2.removeAll();
         NodoPersonaje pointer = cola.getHead();
         for (int i = 0; i < cola.getLength(); i++) {
             JLabel etiqueta = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
-            panel.add(etiqueta);
+            panel2.add(etiqueta);
             pointer = pointer.getNext();
         }
         
-        this.SW_Prioridad_2.add(panel);
+        //this.SW_Prioridad_2.add(panel);
         
         this.SW_Prioridad_2.revalidate();
         this.SW_Prioridad_2.repaint();
     }
     
+        
+        
+        public void actualizarColaUI_StarWars_Prioridad_3(Queue cola){
+            
+            this.panel3.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta3 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel3.add(etiqueta3);
+                pointer = pointer.getNext();
+            }
+
+           // this.SW_Prioridad_3.add(panel3);
+
+            this.SW_Prioridad_3.revalidate();
+            this.SW_Prioridad_3.repaint();
+    }
+        
+        public void actualizarColaUI_StarWars_Refuerzo(Queue cola){
+            
+            this.panel4.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta4 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel4.add(etiqueta4);
+                pointer = pointer.getNext();
+            }
+
+           // this.SW_Prioridad_3.add(panel3);
+
+            this.SW_Reserva.revalidate();
+            this.SW_Reserva.repaint();
+    }
+        
+        public void actualizarColaUI_StarTrek_Prioridad_1(Queue cola){
+            
+            this.panel5.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta5 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel5.add(etiqueta5);
+                pointer = pointer.getNext();
+            }
+
+          //  this.SW_Prioridad_1.add(panel2);
+
+            this.ST_Prioridad_1.revalidate();
+            this.ST_Prioridad_1.repaint();
+    }
+        
+        
+           
+    public void actualizarColaUI_StarTrek_Prioridad_2(Queue cola){
+        
+        this.panel6.removeAll();
+        NodoPersonaje pointer = cola.getHead();
+        for (int i = 0; i < cola.getLength(); i++) {
+            JLabel etiqueta6 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+            panel6.add(etiqueta6);
+            pointer = pointer.getNext();
+        }
+        
+        //this.SW_Prioridad_2.add(panel);
+        
+        this.ST_Prioridad_2.revalidate();
+        this.ST_Prioridad_2.repaint();
+    }
+    
+        
+        
+        public void actualizarColaUI_StarTrek_Prioridad_3(Queue cola){
+            
+            this.panel7.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta7 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel7.add(etiqueta7);
+                pointer = pointer.getNext();
+            }
+
+           // this.SW_Prioridad_3.add(panel3);
+
+            this.ST_Prioridad_3.revalidate();
+            this.ST_Prioridad_3.repaint();
+    }
+        
+               public void actualizarColaUI_StarTrek_Refuerzo(Queue cola){
+            
+            this.panel8.removeAll();
+            NodoPersonaje pointer = cola.getHead();
+            for (int i = 0; i < cola.getLength(); i++) {
+                JLabel etiqueta8 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                panel8.add(etiqueta8);
+                pointer = pointer.getNext();
+            }
+
+           // this.SW_Prioridad_3.add(panel3);
+
+            this.ST_Reserva.revalidate();
+            this.ST_Reserva.repaint();
+    }
     
     
     
