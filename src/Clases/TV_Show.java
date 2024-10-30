@@ -2,6 +2,7 @@
 package Clases;
 
 import EDD.*;
+import java.util.Random;
 
 /**
  *
@@ -50,19 +51,19 @@ public class TV_Show {
         double AP = Math.random();
         double habilidad = Math.random();
         
-        if(HP >= 0.7 ){
+        if(HP <= 0.7 ){
            nivelCalidad += 1;
         }
         
-        if(FP >= 0.5){
+        if(FP <= 0.5){
             nivelCalidad += 1;
         }
         
-        if(AP >= 0.4){
+        if(AP <= 0.4){
             nivelCalidad += 1;
         }
         
-        if(habilidad >= 0.6){
+        if(habilidad <= 0.6){
             nivelCalidad += 1;
         }
         
@@ -83,6 +84,8 @@ public class TV_Show {
             nodo = bronce.searchByIndex(generarNumeroRandom(bronce.getLength()));
         }
         
+        System.out.println(nodo.getElement().getNombrePersonaje());
+        
         crearQueue(nodo);
         
     }
@@ -95,7 +98,7 @@ public class TV_Show {
          }
 
         // Generar un número aleatorio entre 0 y tamañoLista - 1
-        int rand = (int)(Math.random() * sizeLista);
+        int rand =  new Random().nextInt(sizeLista);
         return rand;
 }
 

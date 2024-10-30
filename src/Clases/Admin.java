@@ -20,7 +20,8 @@ public class Admin extends Thread {
     private TV_Show colasStarWars; // TV_Show contiene 4 colas
     private TV_Show colasStarTrek; // TV_Show contiene 4 colas
     
-      private Semaphore semaforo;
+      private final Semaphore semaforo;
+    private int Round = 1;
 
 
 
@@ -43,9 +44,10 @@ public class Admin extends Thread {
             this.colasStarTrek.defininirNivelPersonaje();
         }
         
+        
         NodoPersonaje pointer = this.colasStarWars.getPrioridad_2().getHead();
         while (pointer != null) {
-            System.out.println("[ " + pointer.getElement().getHP() + " ]");
+            System.out.println("[ " + pointer.getElement().getNombrePersonaje() + " ]");
             pointer = pointer.getNext();
         } 
         
@@ -67,10 +69,19 @@ public class Admin extends Thread {
         
         UI_Controlador.getGolpe().getRound().setText("Round: "+ this.ai.getTurno());
         
-        //this.ai.clearFightersUI();
+        this.ai.clearFightersUI();
         UI_Controlador.getGolpe().setVisible(true);
         
+        
+                try {
+            this.semaforo.acquire();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
         this.start();
+        this.getAi().start();
     }
     
     @Override
@@ -78,58 +89,49 @@ public class Admin extends Thread {
         try{
         while(true){
             
-            this.semaforo.acquire();
-            Thread.sleep(100);
+            int duracionBatalla = UI_Controlador.getGolpe().getTiempo_Slider().getValue();
+            this.ai.setTiempo(duracionBatalla);
+  
             //Se chequea los refuerzos, para intentar subir alguno a prioridad_1 (Chance = 80%)
             actualizarRefuerzo(this.colasStarWars);
-            actualizarRefuerzo(this.colasStarTrek); 
+            actualizarRefuerzo(this.colasStarTrek);
             
-            Thread.sleep(100);
+            actualizarUI();
+            System.out.println("Primero"+this.Round );
             //Cada 2 Rounds, el admin agrega un nuevo personaje a cada TV_Show, si y solo, la funcion retorna true
-            if(this.getAi().getTurno() % 2 == 0){
-                
-            if(probabilidadCrearNuevoPersonaje()){
-                this.colasStarWars.defininirNivelPersonaje();
-                this.colasStarTrek.defininirNivelPersonaje();
+            if(this.Round == 2){
+                System.out.println("nuevo personaje");
+                probabilidadCrearNuevoPersonaje();
+                this.Round = 0;
             }
             
-            }
-            
-            Thread.sleep(100);
             //Se escoge al peleador y se guarda en una variable temporal
             Personaje personajeSW =escogerPeleador(this.colasStarWars);
             Personaje personajeST = escogerPeleador(this.colasStarTrek);
             
-            
-            UI_Controlador.getGolpe().getSW_Peleador().setText(personajeSW.getNombrePersonaje());
-            UI_Controlador.getGolpe().getST_Peleador().setText(personajeST.getNombrePersonaje());
-            
-            Thread.sleep(100);
+            prepararPersonajesUI(personajeSW, personajeST);
             
             //Se le pasa los peleadores a la AI
             this.getAi().setStarWars(personajeSW);
             this.getAi().setStarTrek(personajeST);
-
-            Thread.sleep(100);
             
+            //Actualizar colas en el UI
+            actualizarUI();
+
+            
+            this.semaforo.release();
+            Thread.sleep(100);
+            this.semaforo.acquire();
+            
+            this.Round += 1;
+               System.out.println(this.Round + "final");
             //Se aumenta los contadores para evitar la inanicion
             aumentarContadorPersonajes(this.colasStarWars);
             aumentarContadorPersonajes(this.colasStarTrek);
             
-            
             //Actualizar colas en el UI
-            UI_Controlador.getGolpe().actualizarColasUI_StarWars(this.colasStarWars.getPrioridad_1(), 
-                                                                                                                this.colasStarWars.getPrioridad_2() , 
-                                                                                                                this.colasStarWars.getPrioridad_3(),
-                                                                                                                this.colasStarWars.getRefuerzo());
-        
-            UI_Controlador.getGolpe().actualizarColasUI_StarTrek(this.colasStarTrek.getPrioridad_1(), 
-                                                                                                                this.colasStarTrek.getPrioridad_2() , 
-                                                                                                                this.colasStarTrek.getPrioridad_3(),
-                                                                                                                this.colasStarTrek.getRefuerzo());
-            
-            
-            this.semaforo.release();
+             actualizarUI();
+             
         }
         }catch (InterruptedException ex) {
                 Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,7 +143,7 @@ public class Admin extends Thread {
         if(programa.getPrioridad_1().isEmpty()){
             if(programa.getPrioridad_2().isEmpty()){
                 if(programa.getPrioridad_3().isEmpty()){
-                    System.out.println("hola");
+                    System.out.println("hola escoger peleador");
                 }else{
                     return programa.getPrioridad_3().dequeue().getElement();
                 }
@@ -155,23 +157,6 @@ public class Admin extends Thread {
         return null;
     }
     
-//        public Personaje escogerPeleador2(TV_Show programa){
-//            Queue[ ] colas = new Queue[ ]{
-//               programa.getPrioridad_1(),
-//               programa.getPrioridad_2(),
-//               programa.getPrioridad_3(),
-//            };
-//            
-//            for (Queue cola : colas) {
-//                if(!cola.isEmpty()){
-//                    return cola.dequeue().getElement();
-//                }
-//            }
-//            
-//            System.out.println("todo vacio");
-//            return null;
-//    }
-    
     
     //Aqui llamamos a las funciones que actualizan las colas de ambos programas
        public void aumentarContadorPersonajes(TV_Show programa){
@@ -182,23 +167,24 @@ public class Admin extends Thread {
     
     //Aqui aplicamos la logica para actualizar el contador cada personaje en las colas
     public void actualizarColas(Queue prioridad_siguiente, Queue prioridad_actual){
-        if(!prioridad_actual.isEmpty()){
+        if(prioridad_actual.getHead() != null){
 
-        NodoPersonaje pointer = prioridad_actual.getHead();
+        //NodoPersonaje pointer = prioridad_actual.getHead();
 
-
+        
           for (int i = 0; i < prioridad_actual.getLength(); i++) {
-            pointer.getElement().aumentarContador();
+            NodoPersonaje personaje = prioridad_actual.dequeue();
+            personaje.getElement().aumentarContador();
             
-            if(pointer.getElement().getContador() == 8){
-                pointer.getElement().setContador(0);
-                pointer.getElement().setPrioridad(  pointer.getElement().getPrioridad() - 1    );
-                NodoPersonaje personaje = prioridad_actual.dequeue();
+            if(personaje.getElement().getContador() >= 8){
+                personaje.getElement().setContador(0);
+                //pointer.getElement().setPrioridad(  pointer.getElement().getPrioridad() - 1    );
+                //NodoPersonaje personaje = prioridad_actual.dequeue();
                 prioridad_siguiente.enqueue(personaje.getElement());
 
             }
             else{
-                pointer = pointer.getNext();
+                prioridad_actual.enqueue(personaje.getElement()); 
             }
         }
         }
@@ -209,34 +195,73 @@ public class Admin extends Thread {
   
     //Aqui se aplica la logica para actualizar la cola del refuerzo
     public void actualizarRefuerzo(TV_Show programa){
-        NodoPersonaje personaje  = programa.getRefuerzo().dequeue();
         if( programa.getRefuerzo().isEmpty() ){
-            System.out.println("El refuerzo esta vacio");
+            System.out.println("El refuerzo esta vacio, no se actualizara");
         }
         else{
             if(probabilidadSalirRefuerzo()){
+                NodoPersonaje personaje  = programa.getRefuerzo().dequeue();
+                System.out.println("saliste del refuerzo");
                 programa.getPrioridad_1().enqueue(personaje.getElement());
             }
             else{
+                NodoPersonaje personaje  = programa.getRefuerzo().dequeue();
                 programa.getRefuerzo().enqueue(personaje.getElement());
                 System.out.println("No hay chance de que salga. Ve de ultimo a la cola");
             }
         }
-
+        
     }
     
         
     //Hay un 80% chance de crear un personaje nuevo, en esta funcion se calcula ese chance
-    private boolean probabilidadCrearNuevoPersonaje(){
+    private void probabilidadCrearNuevoPersonaje(){
         double chance = Math.random();
-        return chance >= 0.8;
+        if(chance <= 0.8){
+            System.out.println("creado!");
+            this.colasStarWars.defininirNivelPersonaje();
+            this.colasStarTrek.defininirNivelPersonaje();
+        }
+        else{
+            System.out.println("prob"+chance);
+        }
     }
     
     //Hay un 40% chance de que los personajes en la cola del refuerzo salgan de esta cola, y vayan a la cola de prioridad 1
     private boolean probabilidadSalirRefuerzo(){
         double chance = Math.random();
-        return chance >= 0.4;
+        return chance <= 0.4;
     }
+    
+    
+    public void actualizarUI(){
+        
+        UI_Controlador.getGolpe().actualizarColasUI_StarWars(this.colasStarWars.getPrioridad_1(), 
+                                                                                                                this.colasStarWars.getPrioridad_2() , 
+                                                                                                                this.colasStarWars.getPrioridad_3(),
+                                                                                                                this.colasStarWars.getRefuerzo());
+        
+        UI_Controlador.getGolpe().actualizarColasUI_StarTrek(this.colasStarTrek.getPrioridad_1(), 
+                                                                                                                this.colasStarTrek.getPrioridad_2() , 
+                                                                                                                this.colasStarTrek.getPrioridad_3(),
+                                                                                                                this.colasStarTrek.getRefuerzo());
+    }
+    
+    
+    public void prepararPersonajesUI(Personaje personajeSW, Personaje personajeST){
+            UI_Controlador.getGolpe().agregarFotoUI(UI_Controlador.getGolpe().getSW_Peleador(), personajeSW.getFoto());
+            UI_Controlador.getGolpe().getSW_ID().setText(personajeSW.getNombrePersonaje());
+            UI_Controlador.getGolpe().getSW_HP().setText("HP: "+String.valueOf(personajeSW.getHP()));
+            UI_Controlador.getGolpe().getSW_Habilidad().setText("Habilidad: "+personajeSW.getHabilidad());
+            
+            
+            UI_Controlador.getGolpe().agregarFotoUI(UI_Controlador.getGolpe().getST_Peleador(), personajeST.getFoto());
+            UI_Controlador.getGolpe().getST_ID().setText(personajeST.getNombrePersonaje());
+            UI_Controlador.getGolpe().getST_HP().setText("HP: "+String.valueOf(personajeST.getHP()));
+            UI_Controlador.getGolpe().getST_Habilidad().setText("Habilidad: "+personajeST.getHabilidad());
+    }
+
+    
     
     
  

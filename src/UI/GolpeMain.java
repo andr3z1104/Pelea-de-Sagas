@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Clases.Personaje;
+import Clases.TV_Show;
 import EDD.NodoPersonaje;
 import EDD.Queue;
 import java.awt.FlowLayout;
@@ -33,6 +35,8 @@ public class GolpeMain extends javax.swing.JFrame {
     private JPanel panel7;
     private JPanel panel8;
 
+    private boolean flag;
+    
     /**
      * Creates new form GolpeMain
      */
@@ -113,10 +117,12 @@ public class GolpeMain extends javax.swing.JFrame {
         VS_Label = new javax.swing.JLabel();
         SW_Peleador = new javax.swing.JLabel();
         SW_ID = new javax.swing.JLabel();
+        SW_Habilidad = new javax.swing.JLabel();
         SW_Estado = new javax.swing.JLabel();
         SW_HP = new javax.swing.JLabel();
         ST_ID = new javax.swing.JLabel();
         ST_Estado = new javax.swing.JLabel();
+        ST_Habilidad = new javax.swing.JLabel();
         ST_HP = new javax.swing.JLabel();
         ST_Peleador = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -193,6 +199,13 @@ public class GolpeMain extends javax.swing.JFrame {
         SW_ID.setOpaque(true);
         getContentPane().add(SW_ID, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 190, 30));
 
+        SW_Habilidad.setBackground(new java.awt.Color(0, 0, 0));
+        SW_Habilidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        SW_Habilidad.setForeground(new java.awt.Color(255, 255, 255));
+        SW_Habilidad.setText("Habilidad:");
+        SW_Habilidad.setOpaque(true);
+        getContentPane().add(SW_Habilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 260, 40));
+
         SW_Estado.setBackground(new java.awt.Color(0, 0, 0));
         SW_Estado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         SW_Estado.setForeground(new java.awt.Color(255, 255, 255));
@@ -221,6 +234,13 @@ public class GolpeMain extends javax.swing.JFrame {
         ST_Estado.setText("Estado: X");
         ST_Estado.setOpaque(true);
         getContentPane().add(ST_Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 80, 150, 40));
+
+        ST_Habilidad.setBackground(new java.awt.Color(0, 0, 0));
+        ST_Habilidad.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        ST_Habilidad.setForeground(new java.awt.Color(255, 255, 255));
+        ST_Habilidad.setText("Habilidad:");
+        ST_Habilidad.setOpaque(true);
+        getContentPane().add(ST_Habilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 130, 260, 40));
 
         ST_HP.setBackground(new java.awt.Color(0, 0, 0));
         ST_HP.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -302,7 +322,7 @@ public class GolpeMain extends javax.swing.JFrame {
         SW_Victorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         SW_Victorias.setForeground(new java.awt.Color(255, 232, 31));
         SW_Victorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SW_Victorias.setText("Victorias: X");
+        SW_Victorias.setText("Victorias: 0");
         SW_Victorias.setOpaque(true);
         getContentPane().add(SW_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, 150, 40));
 
@@ -310,7 +330,7 @@ public class GolpeMain extends javax.swing.JFrame {
         ST_Victorias.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         ST_Victorias.setForeground(new java.awt.Color(0, 153, 255));
         ST_Victorias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ST_Victorias.setText("Victorias: X");
+        ST_Victorias.setText("Victorias: 0");
         ST_Victorias.setOpaque(true);
         getContentPane().add(ST_Victorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 150, 40));
 
@@ -396,19 +416,106 @@ public class GolpeMain extends javax.swing.JFrame {
     
         public void quitarFotoPeleadores(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
-       // Icon icon = new ImageIcon(image.getImage().getScaledInstance(labelName.getWidth(), labelName.getHeight()));
         labelName.setIcon(image);
         this.repaint();
     }
-    
-    
+        
+        
+        public  void agregarFotoUI(JLabel j, String root) {
+        ImageIcon image = new ImageIcon(root);
+        j.setIcon(image);
+        j.repaint(); 
+    }
+        
+        
+        public void darGolpeUI_SW(JLabel j){
+            final int Xstart = 320;
+            final int Xfinal = 520;
+            
+  
+            
+            Thread animation  = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                   int  x = 320;
+                    int  y = 30;
+                    while(flag = true){
+                        j.setLocation(x, y);
+                        
+                       // x += (int) (x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2);
+                       x += 50; 
+                       
+                        if(x>=Xfinal){
+                            x=320;
+                            j.setLocation(x,y);
+                            break;
+                        }
+                        
+                        try{
+                            Thread.sleep(100);
+                        }
+                        catch(Exception e){
+                            
+                        }
+                        
+                    }
+                }
+                });
+            
+  
+            animation.start();
+            
+            
+        }
+        
+        
+          public void darGolpeUI_ST(JLabel j){
+            final int Xstart = 630;
+            final int Xfinal = 420;
+            
+  
+            
+            Thread animation  = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                   int  x = 630;
+                    int  y = 30;
+                    while(flag = true){
+                        j.setLocation(x, y);
+
+                       x -= 50; 
+                       
+                        if(x<=Xfinal){
+                            x=630;
+                            j.setLocation(x,y);
+                            break;
+                        }
+                        
+                        try{
+                            Thread.sleep(100);
+                        }
+                        catch(Exception e){
+                            
+                        }
+                        
+                    }
+                }
+                });
+            
+  
+            animation.start();
+            
+            
+        }
+
+
  
         public void actualizarColaUI_StarWars_Prioridad_1(Queue cola){
             
             this.panel1.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta2 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta2 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel1.add(etiqueta2);
                 pointer = pointer.getNext();
             }
@@ -426,7 +533,7 @@ public class GolpeMain extends javax.swing.JFrame {
         this.panel2.removeAll();
         NodoPersonaje pointer = cola.getHead();
         for (int i = 0; i < cola.getLength(); i++) {
-            JLabel etiqueta = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+            JLabel etiqueta = new JLabel(pointer.getElement().getNombrePersonaje());
             panel2.add(etiqueta);
             pointer = pointer.getNext();
         }
@@ -444,7 +551,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel3.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta3 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta3 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel3.add(etiqueta3);
                 pointer = pointer.getNext();
             }
@@ -460,7 +567,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel4.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta4 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta4 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel4.add(etiqueta4);
                 pointer = pointer.getNext();
             }
@@ -476,7 +583,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel5.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta5 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta5 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel5.add(etiqueta5);
                 pointer = pointer.getNext();
             }
@@ -494,7 +601,7 @@ public class GolpeMain extends javax.swing.JFrame {
         this.panel6.removeAll();
         NodoPersonaje pointer = cola.getHead();
         for (int i = 0; i < cola.getLength(); i++) {
-            JLabel etiqueta6 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+            JLabel etiqueta6 = new JLabel(pointer.getElement().getNombrePersonaje());
             panel6.add(etiqueta6);
             pointer = pointer.getNext();
         }
@@ -512,7 +619,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel7.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta7 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta7 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel7.add(etiqueta7);
                 pointer = pointer.getNext();
             }
@@ -528,7 +635,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel8.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta8 = new JLabel("Pelador:"+pointer.getElement().getHP()+i);
+                JLabel etiqueta8 = new JLabel(pointer.getElement().getNombrePersonaje());
                 panel8.add(etiqueta8);
                 pointer = pointer.getNext();
             }
@@ -877,6 +984,24 @@ public class GolpeMain extends javax.swing.JFrame {
     public void setjSeparator2(JSeparator jSeparator2) {
         this.jSeparator2 = jSeparator2;
     }
+
+    public JLabel getST_Habilidad() {
+        return ST_Habilidad;
+    }
+
+    public void setST_Habilidad(JLabel ST_Habilidad) {
+        this.ST_Habilidad = ST_Habilidad;
+    }
+
+    public JLabel getSW_Habilidad() {
+        return SW_Habilidad;
+    }
+
+    public void setSW_Habilidad(JLabel SW_Habilidad) {
+        this.SW_Habilidad = SW_Habilidad;
+    }
+    
+    
     
     
 
@@ -892,6 +1017,7 @@ public class GolpeMain extends javax.swing.JFrame {
     private javax.swing.JLabel ST_ColaDePrioridad_4;
     private javax.swing.JLabel ST_Estado;
     private javax.swing.JLabel ST_HP;
+    private javax.swing.JLabel ST_Habilidad;
     private javax.swing.JLabel ST_ID;
     private javax.swing.JLabel ST_Peleador;
     private javax.swing.JScrollPane ST_Prioridad_1;
@@ -905,6 +1031,7 @@ public class GolpeMain extends javax.swing.JFrame {
     private javax.swing.JLabel SW_ColaDePrioridad_4;
     private javax.swing.JLabel SW_Estado;
     private javax.swing.JLabel SW_HP;
+    private javax.swing.JLabel SW_Habilidad;
     private javax.swing.JLabel SW_ID;
     private javax.swing.JLabel SW_Peleador;
     private javax.swing.JScrollPane SW_Prioridad_1;

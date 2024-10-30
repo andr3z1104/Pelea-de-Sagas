@@ -32,7 +32,7 @@ public class AI extends Thread {
     public AI() {
         this.admin = App.getApp().getAdmin();
         this.semaforo = App.getApp().getSemaforo();
-        //this.tiempo = App.getApp().getDuracionBatalla();
+        this.tiempo = App.getApp().getDuracionBatalla();
         this.turno = 0;
     }
     
@@ -47,19 +47,19 @@ public class AI extends Thread {
 //                ControlMainUI.getHome().getWinnerLabelID().setText("");
                   UI_Controlador.getGolpe().getAI_Estado().setText("");
 //                ControlMainUI.getHome().getIaStatusLabel().setText("Determinando el resultado del combate...");
-                  UI_Controlador.getGolpe().getAI_Estado().setText("Calculando resultado...");
+                  UI_Controlador.getGolpe().getAI_Estado().setText("Calculando");
 //                updateCardsUI(getStarWars(), getStarTrek());
 //
 //                ControlMainUI.getHome().getRoundLabel().setText("Round: " + String.valueOf(round));
                   UI_Controlador.getGolpe().getRound().setText("Round: "+String.valueOf(this.turno));
 
                 Thread.sleep((long) (this.getTiempo() * 1000));
-
+                System.out.println("hola ai");
                 double rand = Math.random();
 
                 if (rand < 0.4) {
 //                    ControlMainUI.getHome().getIaStatusLabel().setText("¡Hay un ganador!");
-                    UI_Controlador.getGolpe().getAI_Estado().setText("Tenemos un ganador!");
+                    UI_Controlador.getGolpe().getAI_Estado().setText("Hay ganador!");
                     Personaje ganador = getWinnerCharacter(this.StarWars, this.StarTrek);
 //                    ControlMainUI.getHome().getWinnerLabelID().setText(winner.getCharacterId());
 //                    audioManager.playSoundEffect("/GUI/Assets/victory.wav", 2.0f);
@@ -67,7 +67,7 @@ public class AI extends Thread {
 
                 } else if (rand >= 0.40 && rand < 0.67) {
 //                    ControlMainUI.getHome().getIaStatusLabel().setText("¡El combate termina en empate!");
-                      UI_Controlador.getGolpe().getAI_Estado().setText("Hay un empate!");
+                      UI_Controlador.getGolpe().getAI_Estado().setText("Empate!");
 //                    audioManager.playSoundEffect("/GUI/Assets/tie.wav", 2.0f);
                     Thread.sleep((long) ((getTiempo() * 1000 * 0.3) * 0.6));
                     
@@ -77,15 +77,16 @@ public class AI extends Thread {
 //                    this.getAdministrator().getAvatar().getQueue1().enqueue(this.StarTrek);
                       this.getAdmin().getColasStarTrek().getPrioridad_1().enqueue(this.StarTrek);
                 } else {
-//                    ControlMainUI.getHome().getIaStatusLabel().setText("El combate no se llevará a cabo.");
-                       UI_Controlador.getGolpe().getAI_Estado().setText("Error, no se puede ejecutar el combate");
-//                    audioManager.playSoundEffect("/GUI/Assets/fail.wav", 2.0f);
+                    
+                    UI_Controlador.getGolpe().getAI_Estado().setText("Error!");
                     Thread.sleep((long) ((getTiempo() * 1000 * 0.3) * 0.6));
 
                     //PROBAR NO SE SI FUNCIONA PROBAR
                     //no energy no time...
                     this.getAdmin().getColasStarWars().enqueueRefuerzos(this.StarWars);
-                    this.getAdmin().getColasStarWars().enqueueRefuerzos(this.StarTrek);
+//                    this.getAdmin().getColasStarWars().getRefuerzo().enqueue(this.StarWars);
+//                    this.getAdmin().getColasStarTrek().getRefuerzo().enqueue(this.StarTrek);
+                    this.getAdmin().getColasStarTrek().enqueueRefuerzos(this.StarTrek);
                 }
 
                 clearFightersUI();
@@ -94,7 +95,7 @@ public class AI extends Thread {
                 this.semaforo.release();
                 Thread.sleep(100);
 
-                //????????? no se q es
+
             } catch (InterruptedException ex) {
                 Logger.getLogger(AI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -119,6 +120,7 @@ public class AI extends Thread {
                    UI_Controlador.getGolpe().getST_Estado().setText("Recibiendo daño");
                 golpe = calcularAtaque(StarWars, StarTrek);
                 StarTrek.recibirGolpe(golpe);
+                UI_Controlador.getGolpe().darGolpeUI_SW(UI_Controlador.getGolpe().getSW_Peleador());
 //                ControlMainUI.getHome().getStarTrek().getHPLabel().setText(String.valueOf(StarTrek.getFP()));
                    UI_Controlador.getGolpe().getST_HP().setText(String.valueOf(this.StarTrek.getHP()));
                 if (StarTrek.getHP()<= 0) fin = true;
@@ -130,6 +132,7 @@ public class AI extends Thread {
                   UI_Controlador.getGolpe().getSW_Estado().setText("Recibiendo daño");
                 golpe = calcularAtaque(StarTrek, StarWars);
                 StarWars.recibirGolpe(golpe);
+                UI_Controlador.getGolpe().darGolpeUI_ST(UI_Controlador.getGolpe().getST_Peleador());
 //                ControlMainUI.getHome().getStarWars().getHPLabel().setText(String.valueOf(StarWars.getHitPoints()));
                   UI_Controlador.getGolpe().getSW_HP().setText(String.valueOf(this.StarWars.getHP()));
                 if (StarWars.getHP()<= 0) fin = true;
@@ -212,22 +215,27 @@ public class AI extends Thread {
      } 
     
         public  void clearFightersUI() {
-        //ControlMainUI.getHome().getIaStatusLabel().setText("Esperando nuevos personajes...");
+
         UI_Controlador.getGolpe().getAI_Estado().setText("Se aproxima un combate!");
-        //ControlMainUI.getHome().getWinnerLabelID().setText("");
-        //ControlMainUI.getHome().getRegularShowFighter().clearFightersLabels();
+
         UI_Controlador.getGolpe().getSW_ID().setText("Esperando");
         UI_Controlador.getGolpe().getSW_HP().setText("Esperando");
         UI_Controlador.getGolpe().getSW_Estado().setText("Esperando");
+        UI_Controlador.getGolpe().getSW_Habilidad().setText("Esperando");
         UI_Controlador.getGolpe().quitarFotoPeleadores(UI_Controlador.getGolpe().getSW_Peleador(), "src/FotosArena/cargando.gif");
-        //ControlMainUI.getHome().getAvatarFighter().clearFightersLabels();
+
         UI_Controlador.getGolpe().getST_ID().setText("Esperando");
         UI_Controlador.getGolpe().getST_HP().setText("Esperando");
         UI_Controlador.getGolpe().getST_Estado().setText("Esperando");
+        UI_Controlador.getGolpe().getST_Habilidad().setText("Esperando");
         UI_Controlador.getGolpe().quitarFotoPeleadores(UI_Controlador.getGolpe().getST_Peleador(), "src/FotosArena/cargando.gif");
         
     }
     
+        
+        public void aumentarTurno(){
+            this.turno +=1;
+        }
     
     
     

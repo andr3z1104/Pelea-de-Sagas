@@ -71,8 +71,22 @@ public class Txt {
             
         NodoPersonaje pointer = this.oroStarWars.getHead();
         while(pointer != null){
-            System.out.print(" [ " +  pointer.getElement().getHabilidad() + " ] ");
+            System.out.print(" [ " +  pointer.getElement().getFoto()+ " ] ");
             pointer = pointer.getNext();
+        }
+        
+            System.out.println("plata");
+                NodoPersonaje pointer2 = this.plataStarWars.getHead();
+        while(pointer2 != null){
+            System.out.print(" [ " +  pointer2.getElement().getFoto()+ " ] ");
+            pointer2 = pointer2.getNext();
+        }
+        
+                    System.out.println("bronce");
+                NodoPersonaje pointer3 = this.bronceStarWars.getHead();
+        while(pointer3 != null){
+            System.out.print(" [ " +  pointer3.getElement().getFoto()+ " ] ");
+            pointer3 = pointer3.getNext();
         }
             
             

@@ -25,6 +25,7 @@ public class Controlador {
         app.getT().getOroStarTrek(), app.getT().getPlataStarTrek(), app.getT().getBronceStarTrek());
         
         app.setAdmin(admin);
+        app.getAdmin().getAi().setAdmin(admin);
         app.getAdmin().arrancarSimulacion();
         
     }

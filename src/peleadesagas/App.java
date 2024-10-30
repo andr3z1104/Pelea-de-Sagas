@@ -18,6 +18,7 @@ public class App {
     private static AI ia;
     
     private static Semaphore semaforo = new Semaphore(1);
+    private static int DuracionBatalla = 10;
     
     private static String path = "test//PruebaCombate.txt";
     private static Txt t;
@@ -81,9 +82,16 @@ public class App {
     public static void setSemaforo(Semaphore semaforo) {
         App.semaforo = semaforo;
     }
-    
-    
-    
+
+    public static int getDuracionBatalla() {
+        return DuracionBatalla;
+    }
+
+    public static void setDuracionBatalla(int DuracionBatalla) {
+        App.DuracionBatalla = DuracionBatalla;
+    }
+
+
     
     
     
