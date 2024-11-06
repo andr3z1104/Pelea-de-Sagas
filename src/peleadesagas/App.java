@@ -2,6 +2,8 @@
 package peleadesagas;
 
 import Clases.*;
+import TXT.Txt;
+import java.util.concurrent.Semaphore;
 
 
 /**
@@ -11,10 +13,16 @@ import Clases.*;
 public class App {
     
     private static App app;
+    
     private static Admin admin;
     private static AI ia;
     
+    private static Semaphore semaforo = new Semaphore(1);
+    private static int DuracionBatalla = 10;
     
+    private static String path = "test//PruebaCombate.txt";
+    private static Txt t;
+       
     // Instancia de App, para que sea accesible para todas las clases
     public static synchronized App getInstance(){
         if(getApp() == null){
@@ -50,6 +58,40 @@ public class App {
     public  void setIA(AI ia) {
         App.ia = ia;
     }
+
+    public  String getPath() {
+        return path;
+    }
+
+    public  void setPath(String path) {
+        App.path = path;
+    }
+
+    public  Txt getT() {
+        return t;
+    }
+
+    public  void setT(Txt t) {
+        App.t = t;
+    }
+
+    public static Semaphore getSemaforo() {
+        return semaforo;
+    }
+
+    public static void setSemaforo(Semaphore semaforo) {
+        App.semaforo = semaforo;
+    }
+
+    public static int getDuracionBatalla() {
+        return DuracionBatalla;
+    }
+
+    public static void setDuracionBatalla(int DuracionBatalla) {
+        App.DuracionBatalla = DuracionBatalla;
+    }
+
+
     
     
     

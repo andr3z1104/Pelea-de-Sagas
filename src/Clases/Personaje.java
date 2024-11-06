@@ -43,7 +43,7 @@ public class Personaje {
     
     
     //Si el personaje posee la hablidad CURACION, usa esta funcion
-    public void Curacion(int sanacion){
+    public void curacion(int sanacion){
         int maxHP = 200;
         this.HP += sanacion;
         
@@ -130,6 +130,14 @@ public class Personaje {
 
     public void setHabilidad(String Habilidad) {
         this.Habilidad = Habilidad;
+    }
+
+    public String getNombrePersonaje() {
+        return nombrePersonaje;
+    }
+
+    public String getFoto() {
+        return foto;
     }
     
     
