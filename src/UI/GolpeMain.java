@@ -515,7 +515,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel1.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta2 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta2 = new JLabel(pointer.getElement().getNombrePersonaje() +'_'+ pointer.getElement().getID());
                 panel1.add(etiqueta2);
                 pointer = pointer.getNext();
             }
@@ -533,7 +533,7 @@ public class GolpeMain extends javax.swing.JFrame {
         this.panel2.removeAll();
         NodoPersonaje pointer = cola.getHead();
         for (int i = 0; i < cola.getLength(); i++) {
-            JLabel etiqueta = new JLabel(pointer.getElement().getNombrePersonaje());
+            JLabel etiqueta = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
             panel2.add(etiqueta);
             pointer = pointer.getNext();
         }
@@ -551,7 +551,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel3.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta3 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta3 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
                 panel3.add(etiqueta3);
                 pointer = pointer.getNext();
             }
@@ -567,7 +567,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel4.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta4 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta4 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
                 panel4.add(etiqueta4);
                 pointer = pointer.getNext();
             }
@@ -583,7 +583,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel5.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta5 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta5 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
                 panel5.add(etiqueta5);
                 pointer = pointer.getNext();
             }
@@ -601,7 +601,7 @@ public class GolpeMain extends javax.swing.JFrame {
         this.panel6.removeAll();
         NodoPersonaje pointer = cola.getHead();
         for (int i = 0; i < cola.getLength(); i++) {
-            JLabel etiqueta6 = new JLabel(pointer.getElement().getNombrePersonaje());
+            JLabel etiqueta6 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
             panel6.add(etiqueta6);
             pointer = pointer.getNext();
         }
@@ -619,7 +619,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel7.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta7 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta7 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
                 panel7.add(etiqueta7);
                 pointer = pointer.getNext();
             }
@@ -635,7 +635,7 @@ public class GolpeMain extends javax.swing.JFrame {
             this.panel8.removeAll();
             NodoPersonaje pointer = cola.getHead();
             for (int i = 0; i < cola.getLength(); i++) {
-                JLabel etiqueta8 = new JLabel(pointer.getElement().getNombrePersonaje());
+                JLabel etiqueta8 = new JLabel(pointer.getElement().getNombrePersonaje()+'_'+pointer.getElement().getID());
                 panel8.add(etiqueta8);
                 pointer = pointer.getNext();
             }

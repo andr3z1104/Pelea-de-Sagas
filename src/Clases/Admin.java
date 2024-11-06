@@ -44,18 +44,13 @@ public class Admin extends Thread {
             this.colasStarTrek.defininirNivelPersonaje();
         }
         
+
         
-        NodoPersonaje pointer = this.colasStarWars.getPrioridad_2().getHead();
-        while (pointer != null) {
-            System.out.println("[ " + pointer.getElement().getNombrePersonaje() + " ]");
-            pointer = pointer.getNext();
-        } 
-        
-//                NodoPersonaje pointer2 = this.colasStarTrek.getPrioridad_1().getHead();
-//        while (pointer2 != null) {
-//            System.out.println("[ " + pointer2.getElement().getHP() + " ]");
-//            pointer2 = pointer2.getNext();
-//        }
+                NodoPersonaje pointer2 = this.colasStarTrek.getPrioridad_1().getHead();
+        while (pointer2 != null) {
+            System.out.println("[ " + pointer2.getElement().getHP() + " ]");
+            pointer2 = pointer2.getNext();
+        }
         
    
   
@@ -93,8 +88,7 @@ public class Admin extends Thread {
             this.ai.setTiempo(duracionBatalla);
   
             //Se chequea los refuerzos, para intentar subir alguno a prioridad_1 (Chance = 80%)
-            actualizarRefuerzo(this.colasStarWars);
-            actualizarRefuerzo(this.colasStarTrek);
+            actualizarRefuerzo(this.colasStarWars, this.colasStarTrek);
             
             actualizarUI();
             System.out.println("Primero"+this.Round );
@@ -194,19 +188,24 @@ public class Admin extends Thread {
     }
   
     //Aqui se aplica la logica para actualizar la cola del refuerzo
-    public void actualizarRefuerzo(TV_Show programa){
+    public void actualizarRefuerzo(TV_Show programa, TV_Show programa2){
         if( programa.getRefuerzo().isEmpty() ){
             System.out.println("El refuerzo esta vacio, no se actualizara");
         }
         else{
             if(probabilidadSalirRefuerzo()){
                 NodoPersonaje personaje  = programa.getRefuerzo().dequeue();
+                NodoPersonaje personaje2 = programa2.getRefuerzo().dequeue();
+                
                 System.out.println("saliste del refuerzo");
                 programa.getPrioridad_1().enqueue(personaje.getElement());
+                programa2.getPrioridad_1().enqueue(personaje2.getElement());
             }
             else{
                 NodoPersonaje personaje  = programa.getRefuerzo().dequeue();
+                NodoPersonaje personaje2  = programa2.getRefuerzo().dequeue();
                 programa.getRefuerzo().enqueue(personaje.getElement());
+                programa2.getRefuerzo().enqueue(personaje2.getElement());
                 System.out.println("No hay chance de que salga. Ve de ultimo a la cola");
             }
         }

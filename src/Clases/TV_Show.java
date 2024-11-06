@@ -18,6 +18,8 @@ public class TV_Show {
     private Queue prioridad_2 = new Queue();
     private Queue prioridad_3 = new Queue();
     private Queue refuerzo = new Queue();
+    
+    private  int count = 0;
 
     public TV_Show(Lista oro, Lista plata, Lista bronce) {
         this.oro = oro;
@@ -28,11 +30,19 @@ public class TV_Show {
     
     //ENCOLAR
     public void crearQueue(NodoPersonaje nodo){
-        
         switch (nodo.getElement().getPrioridad()) {
-            case 1 -> this.prioridad_1.enqueue(nodo.getElement());
-            case 2 -> this.prioridad_2.enqueue(nodo.getElement());
-            case 3 -> this.prioridad_3.enqueue(nodo.getElement());
+            case 1:
+                nodo.getElement().setID(count);
+                this.prioridad_1.enqueue(nodo.getElement());
+                count++;
+            case 2 : 
+                nodo.getElement().setID(count);
+                this.prioridad_2.enqueue(nodo.getElement());
+                count++;
+            case 3 : 
+                nodo.getElement().setID(count);
+                this.prioridad_3.enqueue(nodo.getElement());
+                count++;
         }
         
     }
@@ -76,12 +86,26 @@ public class TV_Show {
 
         if(nivelCalidad == 4){
              nodo = oro.searchByIndex(generarNumeroRandom(oro.getLength()));
+             //nodo.getElement().setID(nivelCalidad-3);
         }
         else if(nivelCalidad == 3 || nivelCalidad == 2){
              nodo = plata.searchByIndex(generarNumeroRandom(plata.getLength()));
+//             if(nivelCalidad == 3){
+//                 nodo.getElement().setID(nivelCalidad-1);
+//             }
+//             else{
+//                 nodo.getElement().setID(nivelCalidad);
+//             }
+             
         }
         else{
             nodo = bronce.searchByIndex(generarNumeroRandom(bronce.getLength()));
+//            if(nivelCalidad == 1){
+//                nodo.getElement().setID(nivelCalidad+2);
+//            }
+//            else{
+//                nodo.getElement().setID(nivelCalidad+3);
+//            }
         }
         
         System.out.println(nodo.getElement().getNombrePersonaje());
@@ -101,7 +125,7 @@ public class TV_Show {
         int rand =  new Random().nextInt(sizeLista);
         return rand;
 }
-
+    
     public Queue getPrioridad_1() {
         return prioridad_1;
     }
